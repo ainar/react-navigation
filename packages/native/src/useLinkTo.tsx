@@ -8,7 +8,7 @@ import LinkingContext from './LinkingContext';
 
 export default function useLinkTo() {
   const navigation = useNavigation();
-  const getOptions = React.useContext(LinkingContext);
+  const linking = React.useContext(LinkingContext);
 
   const linkTo = React.useCallback(
     (path: string) => {
@@ -16,7 +16,7 @@ export default function useLinkTo() {
         throw new Error(`The path must start with '/' (${path}).`);
       }
 
-      const options = getOptions();
+      const { options } = linking;
 
       const state = options?.getStateFromPath
         ? options.getStateFromPath(path, options.config)
@@ -42,7 +42,7 @@ export default function useLinkTo() {
         throw new Error('Failed to parse the path to a navigation state.');
       }
     },
-    [getOptions, navigation]
+    [linking, navigation]
   );
 
   return linkTo;

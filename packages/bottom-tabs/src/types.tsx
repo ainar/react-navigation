@@ -197,5 +197,6 @@ export type BottomTabBarProps = BottomTabBarOptions & {
 };
 
 export type BottomTabBarButtonProps = TouchableWithoutFeedbackProps & {
+  href?: string;
   children: React.ReactNode;
 };
